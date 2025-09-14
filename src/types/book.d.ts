@@ -18,6 +18,11 @@ interface Book {
   addedBy: User;
   createdAt: string; // ISO date string
   updatedAt: string; // ISO date string
+
+  // เพิ่ม field ใหม่ (optional)
+  publisher?: string;
+  isbn?: string;
+  coverImage
 }
 
 // Pagination model
