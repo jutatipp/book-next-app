@@ -23,6 +23,7 @@ interface Book {
   publisher?: string;
   isbn?: string;
   coverImage
+  image?: string;
 }
 
 // Pagination model
