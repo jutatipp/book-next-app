@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import { AppBar, Toolbar, Typography, Button, Box, Avatar } from "@mui/material";
 import { useRouter } from "next/navigation";
 import AuthService from "@/libs/AuthService";
 
@@ -9,38 +9,79 @@ export default function NavBar() {
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
 
-  // อ่านค่า user หลังจาก client render
   useEffect(() => {
     const currentUser = AuthService.getCurrentUser();
     setUser(currentUser);
   }, []);
 
   return (
-    <AppBar position="static">
-      <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1, cursor: "pointer" }} onClick={() => router.push("/")}>
+    <AppBar position="static" sx={{ backgroundColor: "#5eaed5ff" }}>
+      <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+        {/* โลโก้ / ชื่อแอป */}
+        <Typography
+          variant="h6"
+          sx={{ cursor: "pointer", fontWeight: "bold", color: "#ffffff" }}
+          onClick={() => router.push("/")}
+        >
         </Typography>
-        {user ? (
-          <Button
-            color="inherit"
-            onClick={() => {
-              AuthService.logout();
-              setUser(null); // เคลียร์ user
-              router.push("/login");
-            }}
-          >
-            Logout
-          </Button>
-        ) : (
-          <Button color="inherit" onClick={() => router.push("/login")}>
-            เข้าสู่ระบบ
-          </Button>
+
+        {/* ถ้ามี user แสดง Avatar + ชื่อ */}
+        {user && (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mr: 3 }}>
+            <Avatar sx={{ bgcolor: "#1b83a5ff", width: 32, height: 32 }}>
+              {user.username[0].toUpperCase()}
+            </Avatar>
+            <Typography sx={{ color: "#ffffff", fontWeight: "500" }}>
+              {user.username}
+            </Typography>
+          </Box>
         )}
-        {!user && (
-          <Button color="inherit" onClick={() => router.push("/register")}>
-            ลงทะเบียน
-          </Button>
-        )}
+
+        {/* ปุ่มเข้าสู่ระบบ / ลงทะเบียน / logout */}
+        <Box sx={{ display: "flex", gap: 1 }}>
+          {user ? (
+            <Button
+              variant="outlined"
+              sx={{
+                color: "#ffffff",
+                borderColor: "#ffffff",
+                "&:hover": { backgroundColor: "#424242", borderColor: "#ffffff" },
+              }}
+              onClick={() => {
+                AuthService.logout();
+                setUser(null);
+                router.push("/login");
+              }}
+            >
+              ออกจากระบบ
+            </Button>
+          ) : (
+            <>
+              <Button
+                variant="outlined"
+                sx={{
+                  color: "#ffffff",
+                  borderColor: "#ffffff",
+                  "&:hover": { backgroundColor: "#424242", borderColor: "#ffffff" },
+                }}
+                onClick={() => router.push("/login")}
+              >
+                เข้าสู่ระบบ
+              </Button>
+              <Button
+                variant="contained"
+                sx={{
+                  backgroundColor: "#ff5722",
+                  "&:hover": { backgroundColor: "#e64a19" },
+                  color: "#ffffff",
+                }}
+                onClick={() => router.push("/register")}
+              >
+                ลงทะเบียน
+              </Button>
+            </>
+          )}
+        </Box>
       </Toolbar>
     </AppBar>
   );
