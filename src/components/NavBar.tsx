@@ -19,7 +19,6 @@ export default function NavBar() {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" sx={{ flexGrow: 1, cursor: "pointer" }} onClick={() => router.push("/")}>
-          LogoVT
         </Typography>
         {user ? (
           <Button
@@ -34,12 +33,12 @@ export default function NavBar() {
           </Button>
         ) : (
           <Button color="inherit" onClick={() => router.push("/login")}>
-            Login
+            เข้าสู่ระบบ
           </Button>
         )}
         {!user && (
           <Button color="inherit" onClick={() => router.push("/register")}>
-            Register
+            ลงทะเบียน
           </Button>
         )}
       </Toolbar>

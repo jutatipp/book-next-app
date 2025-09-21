@@ -26,7 +26,7 @@ export default function LoginPage() {
       <Card>
         <CardContent>
           <Stack spacing={2}>
-            <Typography variant="h5">Login</Typography>
+            <Typography variant="h5">เข้าสู่ระบบ</Typography>
             <Input
               name="email"
               placeholder="Email"
@@ -44,7 +44,7 @@ export default function LoginPage() {
             />
             {error && <Typography color="error">{error}</Typography>}
             <Button onClick={handleLogin} fullWidth variant="contained">
-              Login
+              เข้าสู่ระบบ
             </Button>
           </Stack>
         </CardContent>

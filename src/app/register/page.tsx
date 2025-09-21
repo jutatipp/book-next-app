@@ -36,14 +36,14 @@ export default function RegisterPage() {
       <Card>
         <CardContent>
           <Stack spacing={2}>
-            <Typography variant="h5">Register</Typography>
+            <Typography variant="h5">ลงทะเบียน</Typography>
             <Input name="username" placeholder="Username" value={form.username} onChange={handleChange} fullWidth />
             <Input name="email" placeholder="Email" value={form.email} onChange={handleChange} fullWidth />
             <Input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} fullWidth />
             <Input name="confirmPassword" type="password" placeholder="Confirm Password" value={form.confirmPassword} onChange={handleChange} fullWidth />
             {error && <Typography color="error">{error}</Typography>}
             <Button onClick={handleRegister} fullWidth variant="contained">
-              Register
+              ลงทะเบียน
             </Button>
           </Stack>
         </CardContent>
